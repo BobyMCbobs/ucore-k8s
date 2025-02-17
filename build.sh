@@ -10,7 +10,8 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf install -y tmux 
+dnf install -y tmux
+dnf install -y kubelet kubeadm kubectl kata-containers
 
 # Use a COPR Example:
 #
@@ -19,6 +20,8 @@ dnf install -y tmux
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
 
-#### Example for enabling a System Unit File
+# https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+setenforce 0 || true
+sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 
-systemctl enable podman.socket
+systemctl enable kubelet
