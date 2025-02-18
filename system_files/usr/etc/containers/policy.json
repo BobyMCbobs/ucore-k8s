@@ -6,7 +6,7 @@
     ],
     "transports": {
         "docker": {
-            "": [
+            "ghcr.io/bobymcbobs": [
                 {
                     "type": "sigstoreSigned",
                     "keyPath": "/etc/pki/containers/ucore-k8s.pub",
