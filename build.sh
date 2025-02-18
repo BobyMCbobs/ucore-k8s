@@ -11,6 +11,7 @@ set -ouex pipefail
 
 # this installs a package from fedora repos
 dnf install -y kubernetes kata-containers
+dnf remove -y moby-engine docker-cli
 
 # Use a COPR Example:
 #
