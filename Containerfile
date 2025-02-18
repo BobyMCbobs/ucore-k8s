@@ -14,6 +14,7 @@ FROM ghcr.io/ublue-os/ucore-minimal:stable
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
 
 COPY system_files /
+COPY cosign.pub /etc/pki/containers/ucore-k8s.pub
 COPY build.sh /tmp/build.sh
 
 RUN mkdir -p /var/lib/alternatives && \
