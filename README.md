@@ -1,22 +1,23 @@
-# image-template
+# ucore-k8s
 
 # Purpose
 
-This repository is meant to be a template for building your own custom Universal Blue image. This template is the recommended way to make customizations to any image published by the Universal Blue Project:
-- [Aurora](https://getaurora.dev/)
-- [Bazzite](https://bazzite.gg/)
-- [Bluefin](https://projectbluefin.io/)
-- [uCore](https://projectucore.io/)
-- [main](https://github.com/ublue-os/main/)
-- [hwe](https://github.com/ublue-os/hwe/)
+Deliver Kubernetes on Fedora CoreOS to test out container runtime classes and only run containers signed using Sigstore.
 
-or any other base image if you want to start from scratch:
+[Talos](https://talos.dev) is suitable for production, not this!
 
-- Fedora: `quay.io/fedora/fedora-bootc:41`
-- CentOS Stream 9: `quay.io/centos-bootc/centos-bootc:stream9`
-- CentOS Stream 10 (in development): `quay.io/centos-bootc/centos-bootc:stream10`
+This is an experiment. Do not use it!
 
-This template includes a Containerfile and a Github workflow for building the container image, signing, and proper metadata to be listed on [artifacthub](https://artifacthub.io/). As soon as the workflow is enabled in your repository, it will build the container image and push it to the Github Container Registry.
+# TODOs
+
+- [ ] vendor and sign select container images to run
+  - `kubeadm config images list`
+  - cert-manager
+  - knative-operator
+  - knative-serving
+  - net-kourier
+  - cgr.dev/chainguard/nginx:latest
+- [ ] fix (needed?) kata osbuilder generate
 
 # Prerequisites
 
@@ -33,23 +34,6 @@ Working knowledge in the following topics:
   - https://docs.github.com/en/actions/using-workflows
 
 # How to Use
-
-## Template
-
-Select `Use this Template` and create a new repository from it. To enable the workflows, you may need to go the `Actions` tab of the new repository and click to enable workflows.
-
-## Containerfile
-
-This file defines the operations used to customize the selected image. It contains examples of possible modifications, including how to:
-- change the upstream from which the custom image is derived
-- add additional RPM packages
-- add binaries as a layer from other images
-
-## Building an ISO
-
-Modify `iso.toml` to point to your custom image before generating an ISO.
-
-- (Steps in progress)
 
 ## Workflows
 
