@@ -20773,8 +20773,7 @@ spec:
     kourier:
       enabled: true
   registry:
-    override:
-      default: ghcr.io/bobymcbobs/ucore-k8s/${NAME}
+    default: ghcr.io/bobymcbobs/ucore-k8s/${NAME}:1.17.0
   version: 1.17.0
 ---
 apiVersion: admissionregistration.k8s.io/v1
