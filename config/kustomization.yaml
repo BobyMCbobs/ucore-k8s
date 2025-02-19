@@ -1,0 +1,48 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - https://github.com/cert-manager/cert-manager/releases/download/v1.17.1/cert-manager.yaml
+  - https://github.com/knative/operator/releases/download/knative-v1.17.3/operator.yaml
+  - https://github.com/knative/operator/raw/refs/heads/main/cmd/operator/kodata/knative-serving/1.17.0/2-serving-core.yaml
+images:
+- name: registry.k8s.io/kube-apiserver
+  newName: ghcr.io/bobymcbobs/ucore-k8s/kube-apiserver
+- name: registry.k8s.io/kube-controller-manager
+  newName: ghcr.io/bobymcbobs/ucore-k8s/kube-controller-manager
+- name: registry.k8s.io/kube-scheduler
+  newName: ghcr.io/bobymcbobs/ucore-k8s/kube-scheduler
+- name: registry.k8s.io/kube-proxy
+  newName: ghcr.io/bobymcbobs/ucore-k8s/kube-proxy
+- name: registry.k8s.io/coredns/coredns
+  newName: ghcr.io/bobymcbobs/ucore-k8s/coredns
+- name: registry.k8s.io/pause
+  newName: ghcr.io/bobymcbobs/ucore-k8s/pause
+- name: registry.k8s.io/etcd
+  newName: ghcr.io/bobymcbobs/ucore-k8s/etcd
+- name: quay.io/jetstack/cert-manager-cainjector
+  newName: ghcr.io/bobymcbobs/ucore-k8s/cert-manager-cainjector
+- name: quay.io/jetstack/cert-manager-controller
+  newName: ghcr.io/bobymcbobs/ucore-k8s/cert-manager-controller
+- name: quay.io/jetstack/cert-manager-webhook
+  newName: ghcr.io/bobymcbobs/ucore-k8s/cert-manager-webhook
+- name: gcr.io/knative-releases/knative.dev/operator/cmd/webhook
+  newName: ghcr.io/bobymcbobs/ucore-k8s/webhook
+- name: gcr.io/knative-releases/knative.dev/operator/cmd/operator
+  newName: ghcr.io/bobymcbobs/ucore-k8s/operator
+- name: gcr.io/knative-releases/knative.dev/serving/cmd/queue
+  newName: ghcr.io/bobymcbobs/ucore-k8s/queue
+- name: gcr.io/knative-releases/knative.dev/serving/cmd/queue
+  newName: ghcr.io/bobymcbobs/ucore-k8s/queue
+- name: gcr.io/knative-releases/knative.dev/serving/cmd/activator
+  newName: ghcr.io/bobymcbobs/ucore-k8s/activator
+- name: gcr.io/knative-releases/knative.dev/serving/cmd/autoscaler
+  newName: ghcr.io/bobymcbobs/ucore-k8s/autoscaler
+- name: gcr.io/knative-releases/knative.dev/serving/cmd/controller
+  newName: ghcr.io/bobymcbobs/ucore-k8s/controller
+- name: gcr.io/knative-releases/knative.dev/serving/cmd/webhook
+  newName: ghcr.io/bobymcbobs/ucore-k8s/webhook
+- name: gcr.io/knative-releases/knative.dev/net-kourier/cmd/kourier
+  newName: ghcr.io/bobymcbobs/ucore-k8s/kourier
+- name: docker.io/envoyproxy/envoy
+  newName: ghcr.io/bobymcbobs/ucore-k8s/envoy
