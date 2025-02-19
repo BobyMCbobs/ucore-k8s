@@ -8,9 +8,19 @@ Deliver Kubernetes on Fedora CoreOS to test out container runtime classes and on
 
 This is an experiment. Do not use it!
 
+# Components
+
+- Kubernetes
+  - best way to run containers in production
+- CRI-O
+  - it supports container runtime classes
+  - it supports verifying container images and rejecting unsigned ones
+- Kata-Containers
+  - it provides a tighter level of isolation than runc
+
 # TODOs
 
-- [ ] vendor and sign select container images to run
+- [x] vendor and sign select container images to run
   - `kubeadm config images list`
   - cert-manager
   - knative-operator
@@ -18,6 +28,18 @@ This is an experiment. Do not use it!
   - net-kourier
   - cgr.dev/chainguard/nginx:latest
 - [ ] fix (needed?) kata osbuilder generate
+
+# Bootstrapping Kubernetes
+
+``` bash
+kubeadm init --config /etc/kubernetes/init-config.yaml
+```
+
+# Vendoring container images
+
+```bash
+./sync-and-sign-images.sh
+```
 
 # Prerequisites
 
