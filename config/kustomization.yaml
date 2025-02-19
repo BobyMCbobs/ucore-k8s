@@ -6,6 +6,7 @@ resources:
   - https://github.com/cert-manager/cert-manager/releases/download/v1.17.1/cert-manager.yaml
   - https://github.com/knative/operator/releases/download/knative-v1.17.3/operator.yaml
   - ./knative-serving.yaml
+  - ./runtimeclass-kata.yaml
 images:
 - name: cgr.dev/chainguard/nginx
   newName: ghcr.io/bobymcbobs/ucore-k8s/nginx
