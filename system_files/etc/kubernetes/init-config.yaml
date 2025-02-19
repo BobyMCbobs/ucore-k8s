@@ -1,3 +1,5 @@
+# https://kubernetes.io/docs/reference/config-api/kubeadm-config.v1beta4/
+---
 apiVersion: kubeadm.k8s.io/v1beta4
 kind: InitConfiguration
 nodeRegistration:
@@ -34,5 +36,6 @@ kubernetesVersion: 1.32.2
 networking:
   dnsDomain: cluster.local
   serviceSubnet: 10.96.0.0/12
+  podSubnet: 10.244.0.0/24
 proxy: {}
 scheduler: {}
