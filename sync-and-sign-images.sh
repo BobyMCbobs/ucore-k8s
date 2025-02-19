@@ -22,12 +22,12 @@ function copy-and-sign {
 }
 
 IMAGES=(
-    registry.k8s.io/kube-apiserver:v1.29.14
-    registry.k8s.io/kube-controller-manager:v1.29.14
-    registry.k8s.io/kube-scheduler:v1.29.14
-    registry.k8s.io/kube-proxy:v1.29.14
-    registry.k8s.io/coredns/coredns:v1.11.1
-    registry.k8s.io/pause:3.9
+    registry.k8s.io/kube-apiserver:v1.32.2
+    registry.k8s.io/kube-controller-manager:v1.32.2
+    registry.k8s.io/kube-scheduler:v1.32.2
+    registry.k8s.io/kube-proxy:v1.32.2
+    registry.k8s.io/coredns/coredns:v1.11.3
+    registry.k8s.io/pause:3.10
     registry.k8s.io/etcd:3.5.16-0
     $(curl -sSL https://github.com/cert-manager/cert-manager/releases/download/v1.17.1/cert-manager.yaml | grep 'image:' | sed 's,.*image: "\(.*\)",\1,g')
     $(curl -sSL https://github.com/knative/operator/releases/download/knative-v1.17.3/operator.yaml | grep 'image:' | sed 's,.*image: \(.*\),\1,g')
