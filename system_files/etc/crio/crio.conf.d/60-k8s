@@ -1,1 +1,2 @@
+[crio.image]
 pause_image = "ghcr.io/bobymcbobs/ucore-k8s/pause:3.10"
