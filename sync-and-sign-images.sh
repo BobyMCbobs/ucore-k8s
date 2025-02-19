@@ -23,6 +23,7 @@ function copy-and-sign {
 }
 
 IMAGES=(
+    cgr.dev/chainguard/nginx:latest
     registry.k8s.io/kube-apiserver:v1.32.2
     registry.k8s.io/kube-controller-manager:v1.32.2
     registry.k8s.io/kube-scheduler:v1.32.2
