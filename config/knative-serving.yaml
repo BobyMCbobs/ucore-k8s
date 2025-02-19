@@ -8,7 +8,7 @@ spec:
   version: 1.17.0
   registry:
     override:
-      default: ghcr.io/bobymcbobs/ucore-k8s
+      default: ghcr.io/bobymcbobs/ucore-k8s/${NAME}
   ingress:
     kourier:
       enabled: true
