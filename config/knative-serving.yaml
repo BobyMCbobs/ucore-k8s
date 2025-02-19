@@ -7,8 +7,7 @@ metadata:
 spec:
   version: 1.17.0
   registry:
-    override:
-      default: ghcr.io/bobymcbobs/ucore-k8s/${NAME}
+    default: ghcr.io/bobymcbobs/ucore-k8s/${NAME}:1.17.0
   ingress:
     kourier:
       enabled: true
