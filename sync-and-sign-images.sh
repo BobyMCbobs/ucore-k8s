@@ -35,6 +35,8 @@ IMAGES=(
     $(curl -sSL https://github.com/cert-manager/cert-manager/releases/download/v1.17.1/cert-manager.yaml | grep 'image:' | sed 's,.*image: "\(.*\)",\1,g' | sort | uniq)
     $(curl -sSL https://github.com/knative/operator/releases/download/knative-v1.17.3/operator.yaml | grep 'image:' | sed 's,.*image: \(.*\),\1,g' | sort | uniq)
     $(curl -sSL https://github.com/knative/operator/raw/refs/heads/main/cmd/operator/kodata/knative-serving/1.17.0/2-serving-core.yaml | grep 'image: .*' | sed 's,.*image: \(.*\),\1,g' | sort | uniq)
+    $(curl -sSL https://github.com/knative/operator/raw/refs/heads/main/cmd/operator/kodata/knative-serving/1.17.0/3-serving-hpa.yaml | grep 'image: .*' | sed 's,.*image: \(.*\),\1,g' | sort | uniq)
+    $(curl -sSL https://github.com/knative/operator/raw/refs/heads/main/cmd/operator/kodata/knative-serving/1.17.0/4-serving-post-install-jobs.yaml | grep 'image: .*' | sed 's,.*image: \(.*\),\1,g' | sort | uniq)
     $(curl -sSL https://github.com/knative/operator/raw/refs/heads/main/cmd/operator/kodata/ingress/1.17/kourier/kourier.yaml | grep 'image: .*' | sed 's,.*image: \(.*\),\1,g' | sort | uniq)
 )
 
