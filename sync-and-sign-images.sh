@@ -31,10 +31,11 @@ IMAGES=(
     registry.k8s.io/coredns/coredns:v1.11.3
     registry.k8s.io/pause:3.10
     registry.k8s.io/etcd:3.5.16-0
-    $(curl -sSL https://github.com/cert-manager/cert-manager/releases/download/v1.17.1/cert-manager.yaml | grep 'image:' | sed 's,.*image: "\(.*\)",\1,g')
-    $(curl -sSL https://github.com/knative/operator/releases/download/knative-v1.17.3/operator.yaml | grep 'image:' | sed 's,.*image: \(.*\),\1,g')
-    $(curl -sSL https://github.com/knative/operator/raw/refs/heads/main/cmd/operator/kodata/knative-serving/1.17.0/2-serving-core.yaml | grep 'image: .*' | sed 's,.*image: \(.*\),\1,g')
-    $(curl -sSL https://github.com/knative/operator/raw/refs/heads/main/cmd/operator/kodata/ingress/1.17/kourier/kourier.yaml | grep 'image: .*' | sed 's,.*image: \(.*\),\1,g')
+    $(curl -sSL https://github.com/flannel-io/flannel/releases/download/v0.26.4/kube-flannel.yml | grep 'image: .*' | sed 's,.*image: \(.*\),\1,g' | sort | uniq)
+    $(curl -sSL https://github.com/cert-manager/cert-manager/releases/download/v1.17.1/cert-manager.yaml | grep 'image:' | sed 's,.*image: "\(.*\)",\1,g' | sort | uniq)
+    $(curl -sSL https://github.com/knative/operator/releases/download/knative-v1.17.3/operator.yaml | grep 'image:' | sed 's,.*image: \(.*\),\1,g' | sort | uniq)
+    $(curl -sSL https://github.com/knative/operator/raw/refs/heads/main/cmd/operator/kodata/knative-serving/1.17.0/2-serving-core.yaml | grep 'image: .*' | sed 's,.*image: \(.*\),\1,g' | sort | uniq)
+    $(curl -sSL https://github.com/knative/operator/raw/refs/heads/main/cmd/operator/kodata/ingress/1.17/kourier/kourier.yaml | grep 'image: .*' | sed 's,.*image: \(.*\),\1,g' | sort | uniq)
 )
 
 for IMAGE in "${IMAGES[@]}"; do
