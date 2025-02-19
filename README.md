@@ -71,8 +71,16 @@ kubectl taint node node-role.kubernetes.io/control-plane- --all
 
 # Deploying stuff
 
+Apply it
+
 ``` bash
 until kustomize build config/ | kubectl apply -f -; do sleep 1s; done
+```
+
+Patch Kourier's ExternalIPs
+
+``` bash
+kubectl -n knative-serving patch svc/kourier -p "{\"spec\":{\"externalIPs\":[\"$(hostname -I | awk '{print $1}')\"]}}"
 ```
 
 # Prerequisites
