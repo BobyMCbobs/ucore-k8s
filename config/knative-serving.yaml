@@ -51,3 +51,6 @@ spec:
       enable-service-links: "false"
     domain:
       example.com: ""
+    deployment:
+      runtime-class-name: |
+        kata: {}
