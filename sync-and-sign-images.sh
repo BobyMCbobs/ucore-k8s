@@ -17,8 +17,9 @@ function copy-and-sign {
     NEW_REF="$DEST_REGISTRY_PREFIX/$NAME"
     crane digest "$NEW_REF" || crane copy "$REF" "$NEW_REF"
     DIGEST="$(crane digest "$NEW_REF")"
+    echo "$NEW_REF" | grep "@sha256" 2>&1 >/dev/null || NEW_REF="$NEW_REF@$DIGEST"
     export COSIGN_YES=true
-    cosign verify --key cosign.pub "$NEW_REF" || cosign sign -y -r --key cosign.key "$NEW_REF@$DIGEST"
+    cosign verify --key cosign.pub "$NEW_REF" || cosign sign -y -r --key cosign.key "$NEW_REF"
 }
 
 IMAGES=(
