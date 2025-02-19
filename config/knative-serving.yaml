@@ -1,0 +1,53 @@
+---
+apiVersion: operator.knative.dev/v1beta1
+kind: KnativeServing
+metadata:
+  name: knative-serving
+  namespace: knative-serving
+spec:
+  version: 1.17.0
+  registry:
+    override:
+      default: ghcr.io/bobymcbobs/ucore-k8s
+  ingress:
+    kourier:
+      enabled: true
+  config:
+    gc:
+      retain-since-create-time: "disabled"
+      retain-since-last-active-time: "disabled"
+      max-non-active-revisions: "5"
+      min-non-active-revisions: "0"
+    # certmanager:
+    #   issuerRef: |
+    #     kind: ClusterIssuer
+    #     name: letsencrypt-prod-do
+    features:
+      secure-pod-defaults: "enabled"
+      queueproxy.mount-podinfo: "enabled"
+    autoscaler:
+      max-scale: "5"
+      scale-down-delay: "0s"
+      stable-window: "10m"
+    kourier:
+      use-remote-address: "true"
+      trusted-hops-count: "3"
+    network:
+      ingress-class: "kourier.ingress.networking.knative.dev"
+      # certificate-provider: cert-manager
+      # external-domain-tls: Enabled
+      # namespace-wildcard-cert-selector: |-
+      #   matchExpressions:
+      #     - key: "kubernetes.io/metadata.name"
+      #       operator: "In"
+      #       values: ["flattrack", "default"]
+      # http-protocol: Redirected
+      # default-external-scheme: HTTPS
+      # autocreate-cluster-domain-claims: "true"
+      # domain-template: '{{.Name}}{{ if not (eq .Namespace "flattrack")}}-{{.Namespace}}{{ end }}.{{.Domain}}'
+    defaults:
+      container-name-template: "user-container"
+      container-concurrency: "100"
+      enable-service-links: "false"
+    domain:
+      example.com: ""
