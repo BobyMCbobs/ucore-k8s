@@ -63,6 +63,12 @@ Using kubeadm:
 kubeadm init --config /etc/kubernetes/init-config.yaml
 ```
 
+Allow scheduling
+
+``` bash
+kubectl taint node node-role.kubernetes.io/control-plane- --all
+```
+
 # Deploying stuff
 
 ``` bash
