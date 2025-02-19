@@ -10,7 +10,7 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf install -y kubernetes1.32 kata-containers cri-o1.32
+dnf install -y kubernetes1.32 kata-containers cri-o1.32 dbus
 dnf remove -y moby-engine docker-cli
 
 # Use a COPR Example:
