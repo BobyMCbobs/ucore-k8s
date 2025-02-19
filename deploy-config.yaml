@@ -20721,6 +20721,16 @@ spec:
           type: FileOrCreate
         name: xtables-lock
 ---
+apiVersion: node.k8s.io/v1
+handler: kata
+kind: RuntimeClass
+metadata:
+  name: kata
+overhead:
+  podFixed:
+    cpu: 250m
+    memory: 130Mi
+---
 apiVersion: operator.knative.dev/v1beta1
 kind: KnativeServing
 metadata:
@@ -20736,6 +20746,9 @@ spec:
       container-concurrency: "100"
       container-name-template: user-container
       enable-service-links: "false"
+    deployment:
+      runtime-class-name: |
+        kata: {}
     domain:
       example.com: ""
     features:
@@ -20756,7 +20769,7 @@ spec:
       enabled: true
   registry:
     override:
-      default: ghcr.io/bobymcbobs/ucore-k8s
+      default: ghcr.io/bobymcbobs/ucore-k8s/${NAME}
   version: 1.17.0
 ---
 apiVersion: admissionregistration.k8s.io/v1
