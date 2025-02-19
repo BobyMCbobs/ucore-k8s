@@ -26,3 +26,4 @@ sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 
 systemctl enable kubelet
 systemctl enable crio
+systemctl disable firewalld
