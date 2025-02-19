@@ -5,6 +5,9 @@ nodeRegistration:
   imagePullPolicy: IfNotPresent
   imagePullSerial: true
   taints: null
+  kubeletExtraArgs:
+    - name: volume-plugin-dir
+      value: "/opt/libexec/kubernetes/kubelet-plugins/volume/exec/"
 timeouts:
   controlPlaneComponentHealthCheck: 4m0s
   discovery: 5m0s
@@ -20,7 +23,10 @@ caCertificateValidityPeriod: 87600h0m0s
 certificateValidityPeriod: 8760h0m0s
 certificatesDir: /etc/kubernetes/pki
 clusterName: kubernetes
-controllerManager: {}
+controllerManager:
+  extraArgs:
+    - name: flex-volume-plugin-dir
+      value: "/opt/libexec/kubernetes/kubelet-plugins/volume/exec/"
 dns: {}
 imageRepository: ghcr.io/bobymcbobs/ucore-k8s
 kind: ClusterConfiguration
