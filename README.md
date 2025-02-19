@@ -29,16 +29,44 @@ This is an experiment. Do not use it!
   - cgr.dev/chainguard/nginx:latest
 - [ ] fix (needed?) kata osbuilder generate
 
+# Installation
+
+Boot up Fedora CoreOS 41 on amd64.
+
+Use the following commands as root to switch to the image
+
+``` bash
+bootc switch --transport registry ghcr.io/bobymcbobs/ucore-k8s:latest
+```
+
+Reboot
+
+``` bash
+systemctl reboot
+```
+
+# Vendoring container images
+
+All container images run on ucore-k8s must be signed by the private key related to this repo.
+
+This is a handy script to discover images that need to be run, vendor them (this is where you validate them or build them from scratch in a production environment) and sign them with the private key. See:
+
+```bash
+./sync-and-sign-images.sh
+```
+
 # Bootstrapping Kubernetes
+
+Using kubeadm:
 
 ``` bash
 kubeadm init --config /etc/kubernetes/init-config.yaml
 ```
 
-# Vendoring container images
+# Deploying stuff
 
-```bash
-./sync-and-sign-images.sh
+``` bash
+until kustomize build config/ | kubectl apply -f -; do sleep 1s; done
 ```
 
 # Prerequisites
