@@ -36,7 +36,7 @@ Boot up Fedora CoreOS 41 on amd64.
 Use the following commands as root to switch to the image
 
 ``` bash
-bootc switch --transport registry ghcr.io/bobymcbobs/ucore-k8s:latest
+bootc switch --enforce-container-sigpolicy --transport registry ghcr.io/bobymcbobs/ucore-k8s:latest
 ```
 
 Reboot
@@ -71,13 +71,19 @@ kubectl taint node node-role.kubernetes.io/control-plane- --all
 
 # Deploying stuff
 
+Render config (on machine with `kustomize` installed)
+
+``` bash
+kustomize build config/ > ./deploy-config.yaml
+```
+
 Apply it
 
 ``` bash
-until kustomize build config/ | kubectl apply -f -; do sleep 1s; done
+kubectl apply -f ./deploy-config.yaml
 ```
 
-Patch Kourier's ExternalIPs
+Patch Kourier's ExternalIPs (grossly on target machine; this is a test)
 
 ``` bash
 kubectl -n knative-serving patch svc/kourier -p "{\"spec\":{\"externalIPs\":[\"$(hostname -I | awk '{print $1}')\"]}}"
