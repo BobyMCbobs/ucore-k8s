@@ -1,0 +1,3 @@
+docker:
+  ghcr.io/bobymcbobs:
+    use-sigstore-attachments: true
